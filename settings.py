@@ -18,7 +18,7 @@ TORTOISE_ORM = {
     },
     'apps': {
         'models': {
-            'models': ['aerich.models', 'models.video_type', 'models.video', 'models.video_version'],
+            'models': ['aerich.models', 'models.test'],
             'default_connection': 'default',
         }
     },

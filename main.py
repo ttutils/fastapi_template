@@ -8,7 +8,7 @@ from tortoise.contrib.fastapi import register_tortoise
 
 from settings import TORTOISE_ORM
 from util.yaml_util import read_yaml
-from api.test import test
+from api.test import test1
 
 # 日志记录器
 logger = logging.getLogger()
@@ -47,7 +47,7 @@ register_tortoise(
     add_exception_handlers=True,  # 调试消息，生产环境不能开
 )
 
-app.include_router(test, prefix='/api/test', tags=['测试接口'])
+app.include_router(test1, prefix='/api/test', tags=['测试接口'])
 
 if __name__ == "__main__":
     uvicorn.run(

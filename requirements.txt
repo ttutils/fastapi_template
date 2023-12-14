@@ -1,0 +1,6 @@
+fastapi
+asyncpg
+PyYAML
+tortoise==0.1.1
+tortoise-orm==0.20.0
+uvicorn

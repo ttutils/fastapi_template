@@ -27,7 +27,7 @@ def create_token(user_id, day=99999):
         'exp': datetime.datetime.utcnow() + datetime.timedelta(day)
     }
     # 密钥
-    SALT = read_yaml('token_private_key', 'config')
+    SALT = str(read_yaml('token_private_key', 'config'))
     token = jwt.encode(payload=payload, key=SALT, algorithm="HS256", headers=headers).decode('utf-8')
     return token
 

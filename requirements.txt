@@ -6,3 +6,4 @@ tortoise-orm==0.20.0
 uvicorn
 tt_util
 PyJWT==1.7.1
+aerich==0.7.2

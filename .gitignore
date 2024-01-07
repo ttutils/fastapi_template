@@ -5,3 +5,5 @@ config/*.yaml
 static
 .qiniu_pythonsdk_hostscache.json
 temp/
+pyproject.toml
+migrations/

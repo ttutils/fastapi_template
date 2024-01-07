@@ -9,7 +9,7 @@ test1 = APIRouter()
 
 
 @test1.get('test')
-def test(token: str = Depends(verify_token)):
+def test(token: bool = Depends(verify_token)):
     logging.info(f'调用成功,token={token}')
     return resp_200(message=f'调用成功,token={token}')
 

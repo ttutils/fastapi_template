@@ -7,7 +7,6 @@ from fastapi import FastAPI
 from tortoise.contrib.fastapi import register_tortoise
 
 from settings import TORTOISE_ORM
-from util.yaml_util import read_yaml
 from api.test import test1
 
 # 日志记录器

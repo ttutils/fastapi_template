@@ -6,7 +6,8 @@ from jwt import exceptions
 import datetime
 from fastapi import Header, HTTPException
 from starlette import status
-from tt_util.yaml_util import read_yaml
+from util.config_util import Setting
+setting = Setting()
 
 
 # 创建 JWT token
@@ -27,7 +28,7 @@ def create_token(user_id, day=99999):
         'exp': datetime.datetime.utcnow() + datetime.timedelta(day)
     }
     # 密钥
-    SALT = str(read_yaml('token_private_key', 'config'))
+    SALT = str(setting.CONFIG_TOKEN_PRIVATE_KEY)
     token = jwt.encode(payload=payload, key=SALT, algorithm="HS256", headers=headers).decode('utf-8')
     return token
 
@@ -36,7 +37,7 @@ def create_token(user_id, day=99999):
 def verify_token(Authorization: str = Header(None)):
     token = Authorization
     # 密钥，必须跟签发token的一样
-    salt = str(read_yaml('token_private_key', 'config'))
+    salt = str(setting.CONFIG_TOKEN_PRIVATE_KEY)
     # 从请求头中获取token
     # 判断url在不在白名单中
     if not token:

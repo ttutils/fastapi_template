@@ -10,7 +10,7 @@
 │   ├── base.py				# 封装response
 │   └── test.py				# 测试类
 ├── config
-│   └── db.yaml				# 数据库配置文件
+│   └── config.yaml				# 配置文件
 ├── Dockerfile
 ├── main.py					# 启动文件
 ├── models

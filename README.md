@@ -7,10 +7,9 @@
 ```bash
 .
 ├── api
-│   ├── base.py				# 封装response
-│   └── test.py				# 测试类
+│   └── test.py				# 路由和实现类
 ├── config
-│   └── config.yaml				# 配置文件
+│   └── setting.yaml		# 配置文件
 ├── Dockerfile
 ├── main.py					# 启动文件
 ├── models
@@ -18,14 +17,12 @@
 ├── README.md
 ├── requirements.txt		# 依赖
 ├── settings.py				# ORM数据库连接文件
-└── util
-    └── yaml_util.py		# yaml配置
-
+└── util					# 工具
 ```
 
 - 该仓库使用postgres作为数据库
 
-- 配置文件放在config目录下，具体使用的时候`read_yaml('key', 'file_name')`
+- 配置文件放在config目录下，具体使用的时候`setting.DATABASE_HOST`
 
 ### 执行数据库迁移
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-            
 # @Author : buyfakett
 # @Time : 2023/11/13 15:35
-from util.config_util import Setting
+from pyconfig_util.config_util import Setting
 setting = Setting()
 
 TORTOISE_ORM = {
@@ -19,7 +19,7 @@ TORTOISE_ORM = {
     },
     'apps': {
         'models': {
-            'models': ['aerich.models', 'models.test'],
+            'models': ['aerich.models', 'models.user'],
             'default_connection': 'default',
         }
     },

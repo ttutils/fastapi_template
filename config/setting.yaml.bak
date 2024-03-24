@@ -1,0 +1,8 @@
+database:
+  host: xxx
+  port: 5432
+  user: postgres
+  password: xxx
+  database: xxx
+config:
+  token_private_key: 2121212123

@@ -38,7 +38,7 @@ with open(os.getcwd() + '/version.py', encoding="utf-8") as f:
     exec(f.read(), version_var)
     VERSION = version_var['VERSION']
 
-logging.info(f'当前服务端版本为：{VERSION}')
+logging.info(f'当前服务端版本为：v{VERSION}')
 
 app = FastAPI(
     openapi_url="/api/openapi.json",
@@ -88,8 +88,12 @@ async def get_server_version():
 
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
-    logging.info(
-        f'\n请求方式：{request.method}\n请求地址：{request.base_url}\n请求接口：{request.url.path}\n请求头：{request.headers}\n请求入参：{await request.json() if request.method == "POST" else None}\n请求参数：{request.query_params}')
+    uri = request.url.path
+    if 'api' in uri:
+        method = request.method
+        url = request.base_url
+        logging.info(
+            f'\n请求方式：{method}\n请求地址：{url}\n请求接口：{uri}\n请求头：{request.headers}\n请求入参：{await request.json() if request.method == "POST" else None}\n请求参数：{request.query_params}')
     response = await call_next(request)
     return response
 

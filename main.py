@@ -7,6 +7,7 @@ from fastapi.staticfiles import StaticFiles
 from tortoise.contrib.fastapi import register_tortoise
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
+from pyresp.pyresp import resp_200
 
 from api.user import user
 from settings import TORTOISE_ORM
@@ -32,12 +33,19 @@ for init_dir in ['web/static', 'web/admin']:
     if not os.path.exists(init_dir):
         os.makedirs(init_dir)
 
+with open(os.getcwd() + '/version.py', encoding="utf-8") as f:
+    version_var = {}
+    exec(f.read(), version_var)
+    VERSION = version_var['VERSION']
+
+logging.info(f'当前服务端版本为：{VERSION}')
+
 app = FastAPI(
     openapi_url="/api/openapi.json",
     docs_url="/api/docs",
     redoc_url="/api/redoc",
     title="fastapi_template",
-    version="0.1.0",
+    version=VERSION,
     description="fastapi模板仓库",
     contact={
         "name": "buyfakett",
@@ -71,6 +79,11 @@ app.add_middleware(
 @app.get('/')
 async def main():
     return RedirectResponse('/admin/index.html')
+
+
+@app.get('/api/getServerVersion')
+async def get_server_version():
+    return resp_200(data={'version': VERSION})
 
 
 @app.middleware("http")

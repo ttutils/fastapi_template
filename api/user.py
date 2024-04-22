@@ -2,7 +2,6 @@
 # @Author : buyfakett
 # @Time : 2023/12/29 15:59
 import logging
-from typing import Optional
 
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
@@ -50,7 +49,7 @@ async def change_user(item: ChangeUserModel, user_info: int = Depends(verify_tok
     try:
         await user_data.save()
     except Exception as e:
-        logging.error(f"Error fetching user: {e}")
+        logging.error(f"修改错误: {e}")
         return resp_400(message='修改错误')
     token_data = create_token(user_data.id)
     return resp_200(message='修改成功', data={
@@ -61,7 +60,6 @@ async def change_user(item: ChangeUserModel, user_info: int = Depends(verify_tok
 class AddUserModel(BaseModel):
     user: str
     password: str
-    role: Optional[str] = None
     is_admin: bool = False
 
 
@@ -73,12 +71,12 @@ async def change_user(item: AddUserModel, user_info: int = Depends(verify_token)
     try:
         add_data = await User.create(**item.dict())
     except Exception as e:
-        logging.error(f"Error fetching ssl: {e}")
+        logging.error(f"插入错误: {e}")
         return resp_400(message='插入错误')
+    token_data = create_token(add_data.id)
     resp_data = {
         "id": add_data.id,
-        "password": add_data.password,
-        "role": add_data.role,
+        "token": token_data,
         "is_admin": add_data.is_admin,
     }
     return resp_200(data=resp_data, message='新增成功')

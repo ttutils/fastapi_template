@@ -7,7 +7,7 @@ uvicorn
 PyJWT==1.7.1
 aerich==0.7.2
 pycryptodome
-pyoauth2_util==1.0.6
+pyoauth2_util==1.0.7
 pyresp==1.0.3
 pyaes_util
 colorlog

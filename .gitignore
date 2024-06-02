@@ -1,7 +1,7 @@
 .idea
 venv
 __pycache__
-config/*.yaml
+config/setting.yaml
 static
 .qiniu_pythonsdk_hostscache.json
 temp/

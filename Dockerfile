@@ -1,4 +1,4 @@
-FROM python:3.12.1-alpine3.19
+FROM registry.cn-hangzhou.aliyuncs.com/buyfakett/python:3.12.3-alpine3.19
 WORKDIR /app
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 ADD requirements.txt .
